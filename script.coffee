@@ -1,17 +1,36 @@
 class LinkData
-  buildRow: (table, row) ->
-    table.append '<tr>'
-    table.append '<td>' + row['channel'] + '</td>'
-    table.append '<td>' + row['nick'] + '</td>'
-    m = moment row['time']
+  constructor: (table) ->
+    @table = table
     
-    table.append '<td>' + m.format("DD/MM/YYYY, HH:mm:ss") + '</td>'
-    table.append '<td><a href="' + row['url'] + '">' + row['url'] + '</a></td>'
-    table.append '<td>' + row['message'] + '</td>'
-    table.append '</tr>'
+  clearTable: ->
+    @table.find('tbody').children('tr').remove()
+    
+  buildTable: ->
+    $.get '/links', (data) =>
+      this.clearTable()
+      $.each data, (key, value) =>
+        this.buildRow(value)
+        
+  formatUrl: (url) ->
+    $('<a></a>').append(url).attr("href", url)
+    
+  formatTime: (time) ->
+    m = moment time
+    m.format("DD/MM/YYYY, HH:mm:ss")
+    
+  buildRow: (row) ->
+    tr = $('<tr></tr>')
+
+    tr.append $('<td></td>').append(row['channel'])
+    tr.append $('<td></td>').append(row['nick'])
+    tr.append $('<td></td>').append(this.formatTime(row['time']))
+    tr.append $('<td></td>').append(this.formatUrl(row['url']))
+    tr.append $('<td></td>').append(row['message'])
+
+    @table.find('tbody').append tr
   
 jQuery ->
-  $.get '/links', (data) ->
-    $.each data, (key, value) ->
-      ld = new LinkData
-      ld.buildRow $("#content table"), value
+  ld = new LinkData $("#content table")
+  ld.buildTable()
+  $('#refresh').click ->
+    ld.buildTable()
