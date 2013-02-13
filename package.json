@@ -1,0 +1,11 @@
+{
+  "name": "star-timing",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  },
+  "dependencies": {
+    "mongodb": "1.2.11"
+  }
+}
