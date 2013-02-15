@@ -1,11 +1,16 @@
 {
-  "name": "star-timing",
-  "version": "0.0.1",
-  "engines": {
-    "node": "0.8.x",
-    "npm": "1.1.x"
-  },
-  "dependencies": {
-    "mongodb": "1.2.11"
+    "name": "Duke-Links"
+  , "version": "0.0.2"
+  , "private": true
+  , "engines": {
+      "node": "0.8.x"
+    , "npm": "1.1.x"
+  }
+  , "dependencies": {
+      "express": ">= 0.0.1"
+    , "jade": ">= 0.0.1"
+    , "mongodb": "1.2.11"
+    , "coffee-script": "1.4.0"
+    , "connect-assets": "2.3.3"
   }
 }
