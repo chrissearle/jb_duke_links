@@ -11,7 +11,6 @@ class LinkData
       $.each data, (key, value) =>
         this.buildRow(value)
       this.shortenText()
-#      $('td.readmore').readmore({ split_word: true, substr_len: 150, more_link: '&nbsp;<a class="readm-more">expand</a>' })
         
   formatUrl: (url) ->
     $('<a data-length="50" class="shorten"></a>').text(url).attr("href", url)
