@@ -13,7 +13,7 @@ class LinkData
       this.shortenText()
         
   formatUrl: (url) ->
-    $('<a data-pos="right" data-length="50" class="shorten"></a>').text(url).attr("href", url)
+    $('<a rel="nofollow" data-pos="right" data-length="50" class="shorten"></a>').text(url).attr("href", url)
     
   formatTime: (time) ->
     m = moment time
