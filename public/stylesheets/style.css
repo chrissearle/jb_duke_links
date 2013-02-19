@@ -28,3 +28,6 @@ body {
 .footer-links li:first-child {
   padding-left: 0;
 }
+.popover-content {
+  word-wrap: break-word;
+}

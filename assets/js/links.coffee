@@ -13,7 +13,7 @@ class LinkData
       this.shortenText()
         
   formatUrl: (url) ->
-    $('<a data-length="50" class="shorten"></a>').text(url).attr("href", url)
+    $('<a data-pos="right" data-length="50" class="shorten"></a>').text(url).attr("href", url)
     
   formatTime: (time) ->
     m = moment time
@@ -26,7 +26,7 @@ class LinkData
     tr.append $('<td></td>').append(row['nick'])
     tr.append $('<td></td>').append(this.formatTime(row['time']))
     tr.append $('<td></td>').append(this.formatUrl(row['url']))
-    tr.append $('<td data-length="100" class="shorten"></td>').text(row['message'])
+    tr.append $('<td data-pos="left" data-length="100" class="shorten"></td>').text(row['message'])
 
     @table.find('tbody').append tr
   
@@ -36,7 +36,7 @@ class LinkData
       if $(this).text().length > maxLength
         origText = $(this).text()
         $(this).html(origText.substring(0, maxLength) + "&hellip;")
-        $(this).popover({content: origText, trigger: 'hover', html: true, placement: 'top', title: "Full Text"})
+        $(this).popover({content: origText, trigger: 'hover', html: true, placement: $(this).data('pos'), title: "Full Text"})
   
 jQuery ->
   ld = new LinkData $("#content table")
